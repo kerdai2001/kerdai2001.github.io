@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Playlister Specification</title>
+	<style>
+		body {
+			font-family:'Calibri';
+			font-size:small;
+			line-height:150%;
+		}
+		table {
+			border-collapse: collapse;
+			table-layout: fixed;
+			width:100%;
+		}
+		td {
+			border: 1px solid black;
+			text-align: left;
+			vertical-align: top;
+			padding: 8px;
+		}
+	</style>
+</head>
+<body>
+	
+	<h1>Playlister Specification</h1>
+	
+	<p>Users</p>
+	<ul>
+		<li>Guest</li>
+			<ul>
+				<li>Does not have account</li>
+			</ul>
+		<li>Registered User</li>
+			<ul>
+				<li>Has account</li>
+			</ul>
+		<li>Logged-In User</li>
+			<ul>
+				<li>Has account and is logged in</li>
+			</ul>
+	</ul>
+
+	<a >
+
+	<table>
+		<tr>
+			<td>
+				Create Account (2.1)
+				<ul>
+					<li>Guest</li>
+					<li>Enter information and press "Create Account" button</li>
+					<li>Adds account to database but does not log in</li>
+					<li>No two accounts can have the same email address</li>
+					<li>All usernames must be unique</li>
+					<li>Feedback on any thrown errors</li>
+				</ul>
+			</td>
+			<td>
+				Login to Account (2.2)
+				<ul>
+					<li>Registered User</li>
+					<li>Go to login page, enter information, click "Login"</li>
+					<li>User is taken to home screen with playlists</li>
+					<li>Feedback on any thrown errors</li>
+				</ul>
+			</td>
+			<td>
+				Logout of Account (2.3)
+				<ul>
+					<li>Logged-In User</li>
+					<li>Can be done on any application screen</li>
+					<li>Click on account circle, click "Logout"</li>
+					<li>Logs out user and returns to splash screen</li>
+				</ul>
+			</td>
+			<td>
+				Use Site as Guest (2.4)
+				<ul>
+					<li>Guest</li>
+					<li>Click "Continue as Guest" on splash screen</li>
+					<li>Takes user to All Lists screen</li>
+					<li>User can search for lists by name and open playlists</li>
+					<li>User can view comments and play playlists</li>
+					<li>User can go to Users screen and search for playlists by username</li>
+					<li>Cannot navigate to the home screen, button is visibly and functionally disabled</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Create Playlist (2.5)
+				<ul>
+					<li>Logged-In User</li>
+					<li>"New Playlist" button creates new playlist and opens it</li>
+					<li>New playlist is given "Untitled ?" name</li>
+					<ul>
+						<li>? counts up starting at 0</li>
+					</ul>
+					<li>No two playlists by the same user can have the same name</li>
+					<ul>
+						<li>New playlist creation</li>
+						<li>Renaming playlist</li>
+					</ul>
+				</ul>
+			</td>
+			<td>
+				Rename Playlist (2.6)
+				<ul>
+					<li>Logged-In User</li>
+					<li>Double click on playlist card turns the name into a textfield, initially with the playlist name</li>
+					<li>User can type in any name and hit enter to change the name</li>
+					<li>Error pops up if another list already has that name</li>
+					<li>Text field should remain open</li>
+				</ul>
+			</td>
+			<td>
+				Edit Playlist (2.7)
+				<ul>
+					<li>Logged-In User</li>
+					<li>User selects unpublished playlist which opens it</li>
+					<li>Click "Add Song" button to add a song</li>
+					<li>Double click on song to open the Edit Song dialog</li>
+					<ul>
+						<li>Title, Artist, YouTube ID</li>
+					</ul>
+					<li>User can drag and drop songs to change order</li>
+					<li>User can press "undo" and "redo" buttons</li>
+					<ul>
+						<li>Transaction stack is cleared every time a playlist is opened</li>
+					</ul>
+				</ul>
+			</td>
+			<td>
+				Publish Playlist (2.8)
+				<ul>
+					<li>Logged-In User</li>
+					<li>User can press "Publish" button on unpublished playlist to permanently publish playlist</li>
+					<li>Cannot be undone</li>
+					<li>Cannot be edited</li>
+					<li>Can be deleted</li>
+					<li>Can be found and liked/disliked by others</li>
+					<li>Can be duplicated, duplicate is unpublished</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Duplicate Playlist (2.9)
+				<ul>
+					<li>Logged-In User</li>
+					<li>User can duplicate from Home screen, All Lists, or Users</li>
+					<li>New playlist is added to user's playlists with same name and same contents</li>
+					<li>If user already has playlist with the same name, a number is added to the duplicated playlist name</li>
+				</ul>
+			</td>
+			<td>
+				Delete Playlist (2.10)
+				<ul>
+					<li>Logged-In User</li>
+					<li>Click "Delete Playlist" button</li>
+					<li>Confirmation modal opens with "confirm" or "cancel" options</li>
+					<li>If confirm, playlist is removed from database and screen is refreshed</li>
+				</ul>
+			</td>
+			<td>
+				View Owned Playlists (2.11)
+				<ul>
+					<li>Logged-In User</li>
+					<li>User can click on "SORT BY" button to to sort playlists by:</li>
+					<ul>
+						<li>By Creation Date (Old-New)</li>
+						<li>By Last Edit Date (Old-New)</li>
+						<li>By Name (A-Z)</li>
+					</ul>
+				</ul>
+			</td>
+			<td>
+				Search by Playlist (2.12)
+				<ul>
+					<li>Guest or Registered User</li>
+					<li>User goes to "All Lists" screen</li>
+					<li>User enters text in search text field and hits enter</li>
+					<li>All published playlists that contain the text by any user are loaded</li>
+					<li>User can select and play a playlist</li>
+					<li>If no playlist contains the search text, the list of playlists is empty</li>
+					<ul>
+						<li>Also empty if user hits enter and search text is blank</li>
+					</ul>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Search By User (2.13)
+				<ul>
+					<li>Guest or Registered User</li>
+					<li>User navigates to Users screen</li>
+					<li>User enters text in search text field and hits enter</li>
+					<li>All published playlists by any user that contains the text are loaded</li>
+					<li>User can select and play a playlist</li>
+					<li>If no user contains the search text, the list of playlists is empty</li>
+					<ul>
+						<li>Also empty if user hits enter and search text is blank</li>
+					</ul>
+				</ul>
+			</td>
+			<td>
+				Play Playlist (2.14)
+				<ul>
+					<li>Guest or Registered User</li>
+					<li>Clicking on a playlist highlights it and loads it into the player</li>
+					<li>User can press "play" to play the first song</li>
+					<li>User can press "pause" to pause the song</li>
+					<li>User can press "next" or "prev" to navigate songs in playlist</li>
+					<li>Current song being played is highlighted in the playlist view</li>
+					<li>All published playlists should be playable by all users</li>
+					<li>Unpublished playlists can only be played by the owner</li>
+				</ul>
+			</td>
+			<td>
+				Comment on Playlist (2.15)
+				<ul>
+					<li>Logged-In User</li>
+					<li>User can click on "comments" tab to show comments for that song</li>
+					<li>User can press "Like/Dislike"</li>
+					<li>User can add their own comment in the text field and hit enter</li>
+					<li>Comments are refreshed after adding a comment</li>
+				</ul>
+			</td>
+			<td>
+				
+			</td>
+		</tr>
+	</table>
+
+	
+
+</body>
+</html>
